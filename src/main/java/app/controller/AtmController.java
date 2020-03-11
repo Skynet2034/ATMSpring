@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,7 +33,7 @@ public class AtmController {
 //        return new ResponseEntity<>(Store.getStore(), HttpStatus.OK);
 //    }
 
-    // GET http://localhost:9011/account?id=100
+    // https://github.com/greepz/spring-mvc-hackerU
 
     @GetMapping("/account")
     public ResponseEntity<Account> getAccount(@RequestParam("id") String id){
@@ -41,9 +42,10 @@ public class AtmController {
     }
 
     @GetMapping("/accounts")
-    public ResponseEntity<Collection<Account>> getAccounts(){
+    public String getAccounts(Model model){
         Collection<Account> accounts = service.get();
-        return new ResponseEntity<>(accounts, HttpStatus.OK);
+        model.addAttribute("list", accounts);
+        return "index";
     }
 
 
