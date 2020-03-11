@@ -5,6 +5,7 @@ import app.model.Account;
 import app.service.StoreService;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
 import java.util.List;
 
 @Component("StoreServiceImpl")
@@ -19,11 +20,11 @@ public class StoreServiceImpl implements StoreService {
     }
 
     @Override
-    public List<Account> get() {
+    public Collection<Account> get() {
         if(Store.getStore().size() == 0){
             throw new RuntimeException("Store is empty");
         }
-        return (List<Account>) Store.getStore().values();
+        return Store.getStore().values();
     }
 
     @Override

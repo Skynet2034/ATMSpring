@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -40,8 +41,8 @@ public class AtmController {
     }
 
     @GetMapping("/accounts")
-    public ResponseEntity<List<Account>> getAccounts(){
-        List<Account> accounts = service.get();
+    public ResponseEntity<Collection<Account>> getAccounts(){
+        Collection<Account> accounts = service.get();
         return new ResponseEntity<>(accounts, HttpStatus.OK);
     }
 
