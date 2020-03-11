@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
@@ -46,6 +48,28 @@ public class AtmController {
         Collection<Account> accounts = service.get();
         model.addAttribute("list", accounts);
         return "index";
+    }
+
+    //http://localhost:9011/account/delete/2ddf929f-8d96-410a-99b5-377f8a6749e6
+    @GetMapping("/account/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") String id){
+        service.delete(id);
+        return new ResponseEntity<>("Deleted", HttpStatus.OK);
+    }
+
+    //http://localhost:9011/account/add
+
+    /**
+     * {
+     *     "holder": "artem111",
+     *     "date": "2020-01-01",
+     *     "amount": 1000.0
+     * }
+     *
+     */
+    @PostMapping("/account/add")
+    public ResponseEntity<Account> add(Account account){
+
     }
 
 
