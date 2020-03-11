@@ -2,6 +2,7 @@ package app.controller;
 
 import app.Store;
 import app.model.Account;
+import app.service.AccountService;
 import app.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,10 @@ public class AtmController {
     @Autowired
     @Qualifier("StoreServiceImpl")
     private StoreService service;
+
+    @Autowired
+    @Qualifier("AccountServiceImpl")
+    private AccountService accountService;
 
 //    @GetMapping("/balance")
 //    public String getBalance(){
@@ -81,6 +86,14 @@ public class AtmController {
         oldAccount.setAmount(account.getAmount());
         service.update(oldAccount);
         return new ResponseEntity<>(oldAccount, HttpStatus.OK);
+    }
+
+    @PostMapping("/account/withdraw/{id}/{amount}")
+    public ResponseEntity<String> withdraw(@PathVariable("id") String id,
+                                           @PathVariable("amount") double amount){
+        Account account = service.get(id);
+        accountService.withdraw(account, amount);
+        return new ResponseEntity<>("Ok", HttpStatus.OK);
     }
 
 
