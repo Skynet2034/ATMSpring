@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div>
-    <table class="table">
-        <thead>
+<div class="container">
+    <table class="table table-hover">
+        <thead class="table-dark">
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Holder</th>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <tr th:each="item:${list}">
-            <th th:text="${item.id}" scope="row"></th>
+            <th th:text="${item.id}" scope="row"><a th:href="@{/account/(item.id)}"></a></th>
             <td th:text="${item.holder}"></td>
             <td th:text="${item.date}"></td>
             <td th:text="${item.amount}"></td>
