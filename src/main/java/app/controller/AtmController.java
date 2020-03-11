@@ -73,5 +73,15 @@ public class AtmController {
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
+    @PutMapping("/account/update")
+    public ResponseEntity<Account> update(@RequestBody Account account){
+        Account oldAccount = service.get(account.getId());
+        oldAccount.setHolder(account.getHolder());
+        oldAccount.setDate(account.getDate());
+        oldAccount.setAmount(account.getAmount());
+        service.update(oldAccount);
+        return new ResponseEntity<>(oldAccount, HttpStatus.OK);
+    }
+
 
 }
