@@ -4,8 +4,7 @@ import app.model.Account;
 
 import java.util.List;
 
-public interface AtmService {
-    public double balance(Account account);
+public interface StoreService {
     public Account get(String id);
     public List<Account> get();
     public void delete(String id);
