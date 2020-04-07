@@ -7,16 +7,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
-@Component("Base")
-public class StoreServiceImpl implements StoreService {
+@Component("Stub")
+public class StoreServiceImpl2 implements StoreService {
     @Override
     public Account get(String id) {
-        Account account = Store.getStore().get(id);
-        if (account == null){
-            throw new RuntimeException("Account not found by id:"+id);
-        }
+        Account account = new Account();
+        account.setId("123");
+        account.setHolder("vasya");
+        account.setDate(new Date());
+        account.setAmount(1000);
         return account;
     }
 

@@ -9,6 +9,8 @@ public class Account {
     private String id;
     private String holder;
     private Date date;
+
+
     private double amount;
     private int pin;
 
@@ -50,5 +52,16 @@ public class Account {
 
     public void setPin(int pin) {
         this.pin = pin;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id='" + id + '\'' +
+                ", holder='" + holder + '\'' +
+                ", date=" + date +
+                ", amount=" + amount +
+                ", pin=" + pin +
+                '}';
     }
 }
